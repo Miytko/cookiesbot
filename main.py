@@ -30,11 +30,12 @@ async def on_voice_state_update(member: discord.Member, before: discord.VoiceSta
     timestamp = datetime.datetime.now()
     time_txt = timestamp.strftime("[%Y-%m-%d %H:%M:%S] ")
     if before.channel is None and after.channel is not None:
-        message = f"{member} has joined {after.channel}"
+        message = f"{member} has joined {after.channel} ({after.channel.guild})"
     if before.channel is not None and after.channel is None:
-        message = f"{member} has left {before.channel}"
+        message = f"{member} has left {before.channel} ({before.channel.guild})"
     if before.channel is not None and after.channel is not None:
-        message = f"{member} has switched from {before.channel} to {after.channel}"
+        message = f"{member} has switched from {before.channel} ({before.channel.guild}) " \
+                  f"to {after.channel} ({after.channel.guild})"
     log_msg = time_txt + message + "\n"
     with open("db/log.txt", "a") as f:
         f.write(log_msg)
