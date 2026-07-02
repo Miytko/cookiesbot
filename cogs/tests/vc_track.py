@@ -19,7 +19,7 @@ class VoiceTracker(commands.Cog):
     async def on_voice_state_update(self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState):
         # message = f"Something else happened. Error? member: {member}, before: {before}, after: {after}"
         timestamp = datetime.datetime.now()
-        time_txt = timestamp.strftime("[%Y-%m-%d %H:%M:%S] ")
+        time_txt = timestamp.strftime("%Y-%m-%d %H:%M:%S")
 
         fields = ["date", "user", "action",
                 "previous_server", "previous_channel",
