@@ -47,22 +47,22 @@ class VoiceTracker(commands.Cog):
 
         if before.channel is not None and after.channel is not None:
             if before.channel == after.channel:
-                if not before.self_mute and after.self_mute:
-                    action = "mute"
-                elif before.self_mute and not after.self_mute:
-                    action = "unmute"
-                elif not before.self_deaf and after.self_deaf:
+                if not before.self_deaf and after.self_deaf:
                     action = "deaf"
                 elif before.self_deaf and not after.self_deaf:
                     action = "undeaf"
-                elif not before.mute and after.mute:
-                    action = "admin_mute"
-                elif before.mute and not after.mute:
-                    action = "admin_unmute"
+                elif not before.self_mute and after.self_mute:
+                    action = "mute"
+                elif before.self_mute and not after.self_mute:
+                    action = "unmute"
                 elif not before.deaf and after.deaf:
                     action = "admin_deaf"
                 elif before.deaf and not after.deaf:
                     action = "admin_undeaf"
+                elif not before.mute and after.mute:
+                    action = "admin_mute"
+                elif before.mute and not after.mute:
+                    action = "admin_unmute"
                 elif not before.self_stream and after.self_stream:
                     action = "stream_on"
                 elif before.self_stream and not after.self_stream:
