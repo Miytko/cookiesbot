@@ -29,7 +29,7 @@ async def hello(ctx):
 @bot.tree.command(name="vctime", description="See how much time you've spent in vc")
 async def vctime(interaction: discord.Interaction):
     total_minutes = vc_utils.process_log()
-    msg = f"Total time spent in vc: {total_minutes[interaction.user]}"
+    msg = f"Total time spent in vc: {total_minutes[interaction.user.name]}"
     await interaction.response.send_message(msg)
 
 
