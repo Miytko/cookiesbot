@@ -30,7 +30,26 @@ async def hello(ctx):
 async def vctime(interaction: discord.Interaction):
     total_minutes = vc_utils.process_log()
     hours = math.floor(total_minutes[interaction.user.name] / 60)
-    msg = f"Total time spent in vc: {hours}h{total_minutes[interaction.user.name] % 60:02}"
+    msg = f"Total time spent in vc: {hours}h{total_minutes[interaction.user.name] % 60:02}m"
+    await interaction.response.send_message(msg)
+
+
+@bot.tree.command(name="vcleaderboard", description="Top 5 users by total time spent in vc")
+async def vcleaderboard(interaction: discord.Interaction):
+    total_minutes = vc_utils.process_log()
+    sorted_hours = dict(sorted(total_minutes.items(), key=lambda item: item[1], reverse=True))
+
+    msg = f"Top 5 unemployed:\n"
+
+    index = 0
+    for user, value in enumerate(sorted_hours):
+        if index < 5:
+            hours = math.floor(value / 60)
+            usermsg = f"{user} - {hours}h{value%60:02}m\n"
+            msg += usermsg
+        else:
+            break
+    
     await interaction.response.send_message(msg)
 
 
