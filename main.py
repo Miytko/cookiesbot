@@ -45,7 +45,7 @@ async def vcleaderboard(interaction: discord.Interaction):
     for user, value in sorted_hours.items():
         if index < 5:
             hours = math.floor(value / 60)
-            usermsg = f"{user} - {hours}h{value%60:02}m\n"
+            usermsg = f"{index+1}. {user} - {hours}h{value%60:02}m\n"
             msg += usermsg
             index += 1
         else:
