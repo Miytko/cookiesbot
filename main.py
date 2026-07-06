@@ -2,7 +2,7 @@ from discord_token import DISCORD_TOKEN
 from discord.ext import commands
 import discord
 import vc_utils
-
+import math
 
 EXTENSIONS = ["cogs.tests.vc_track"]
 
@@ -29,7 +29,8 @@ async def hello(ctx):
 @bot.tree.command(name="vctime", description="See how much time you've spent in vc")
 async def vctime(interaction: discord.Interaction):
     total_minutes = vc_utils.process_log()
-    msg = f"Total time spent in vc: {total_minutes[interaction.user.name]}"
+    hours = math.floor(total_minutes[interaction.user.name] / 60)
+    msg = f"Total time spent in vc: {hours}h{total_minutes[interaction.user.name] % 60:02}"
     await interaction.response.send_message(msg)
 
 
