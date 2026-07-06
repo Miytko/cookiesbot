@@ -42,7 +42,7 @@ async def vcleaderboard(interaction: discord.Interaction):
     msg = f"Top 5 unemployed:\n"
 
     index = 0
-    for user, value in enumerate(sorted_hours):
+    for user, value in enumerate(sorted_hours.items()):
         if index < 5:
             hours = math.floor(value / 60)
             usermsg = f"{user} - {hours}h{value%60:02}m\n"
