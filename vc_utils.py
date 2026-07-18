@@ -5,6 +5,7 @@ def process_csv_row(row: list):
 
     date_string = row[0]
     date = datetime.datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
+
     
     return {
         "action": row[2],
@@ -63,7 +64,12 @@ def process_log():
                             active_sessions[user]["status"] = "muted"
                         else:
                             active_sessions[user]["status"] = "unmuted"
-                
+
+        
+        for user, data in active_sessions.items():
+            timestamp = datetime.datetime.now()
+            time_spent = (timestamp - data["date"]).total_seconds()
+            total_time[user] += time_spent
 
         total_minutes = {}
         for user, seconds in total_time.items():
