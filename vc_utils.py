@@ -64,6 +64,8 @@ def process_log():
                             active_sessions[user]["status"] = "muted"
                         else:
                             active_sessions[user]["status"] = "unmuted"
+                else:
+                    active_sessions[user]["channel"] = entry["after"]
 
         
         for user, data in active_sessions.items():
