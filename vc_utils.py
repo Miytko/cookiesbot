@@ -50,7 +50,7 @@ def process_log():
             elif entry["action"] == "leave":
                 if not active_sessions[user].get("channel"):
                     del active_sessions[user]
-                    return
+                    continue
                 if entry["before"] == active_sessions[user]["channel"]:
                     time_spent = (entry["date"] - active_sessions[user]["date"]).total_seconds()
                     total_time[user] += time_spent
