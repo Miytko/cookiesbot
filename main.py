@@ -48,13 +48,13 @@ async def vcleaderboard(interaction: discord.Interaction):
     invoker_name = interaction.user.name
     invoker_rank = None
     invoker_minutes = total_minutes.get(invoker_name)
-    
+
 
     for index, (user, minutes) in enumerate(sorted_hours):
         rank = index + 1
 
         if user == invoker_name:
-            invoker_rank == rank
+            invoker_rank = rank
 
         if index < 5:
             msg += f"{rank}. {user} - {format_time_msg(minutes)}\n"
